@@ -29,58 +29,7 @@ void prin(){
 	}
 }
 
-bool check(){
-	
-	if (map[1][1] == 'X' && map[1][2] == 'X' && map[1][3] == 'X' && map[1][4] == 'X' && map[1][5] == 'X' && map[1][6] == 'X' && map[1][7] == 'X'){
-		
-		return true;
-	}
-	
-	return false;
-}
-
-// check if star and projectile collide
-bool check1(int starPos){
-	
-	if (map[1][starPos] == '*'){
-		
-		map[1][starPos] = 'X';
-		prin();
-		
-	} else if (map[2][starPos] == '*') {
-		
-		map[2][starPos] = 'X';
-		prin();
-		
-	} else if (map[3][starPos] == '*') {
-		
-		map[3][starPos] = 'X';
-		prin();
-		
-	} else if (map[4][starPos] == '*') {
-		
-		map[4][starPos] = 'X';
-		prin();
-		
-	} else if (map[5][starPos] == '*') {
-		
-		map[5][starPos] = 'X';
-		prin();
-		
-	} else if (map[6][starPos] == '*') {
-		
-		map[6][starPos] = 'X';
-		prin();
-		
-	} else if (map[7][starPos] == '*') {
-		
-		map[7][starPos] = 'X';
-		prin();
-		
-	}
-}
-
-void time(int t){
+void ti(int t){
 	
 	clock_t endWait = clock() + t;
 	
@@ -90,13 +39,14 @@ void time(int t){
 	}
 }
 
-// Show turn sequence as well as bot turns
-
+// TODO: show end game
+// TODO: try to fix X functionality
 int main(){
 	
 	int pos = 4;
 	int starPosY = 1;
 	int starPosX = 0;
+	int projPos = 6;
 	char button;
 	int turn = 0;
 	
@@ -115,10 +65,11 @@ int main(){
 			system("CLS");
 		
 			if (turn % 2 == 0){
-					
+				
+				// checks if star at position x is within range of 0 to 8
 				if (starPosX >= 0 && starPosX < 8){
 					
-					// TODO: fix issue with previous star not going to blank
+					// TODO: fix issue with star printing itself in middle of map
 					
 					map[starPosY][arr1[starPosX]] = '@';
 					
@@ -126,10 +77,8 @@ int main(){
 						
 						map[starPosY - 1][arr1[starPosX]] = ' ';
 					}
-					
 					prin();
-					time(800);
-					check1(arr1[starPosX]);
+					ti(800);
 					system("cls");
 					
 					starPosY++;
@@ -166,37 +115,36 @@ int main(){
 					
 					map[6][pos] = '*';
 					prin();
-					time(2);
+					ti(80);
 					system("cls");
 					
 					map[5][pos] = '*';
 					map[6][pos] = ' ';
-					time(2);
+					ti(80);
 					prin();
 					system("cls");
 					
 					map[4][pos] = '*';
 					map[5][pos] = ' ';
-					time(2);
+					ti(80);
 					prin();
 					system("cls");
 					
 					map[3][pos] = '*';
 					map[4][pos] = ' ';
-					time(2);
+					ti(80);
 					prin();
 					system("cls");
 					
 					map[2][pos] = '*';
 					map[3][pos] = ' ';
-					time(2);
+					ti(80);
 					prin();
 					system("cls");
 					
-					// the first index of map is why the x keeps floating to the top
 					map[1][pos] = 'X';
 					map[2][pos] = ' ';
-					time(2);
+					ti(80);
 					prin();
 					system("cls");
 				}
@@ -204,6 +152,10 @@ int main(){
 				prin();
 				
 				cin >> button;
+				
+				if (button == 'x'){
+					break;
+				}
 				
 				turn++;
 			}
