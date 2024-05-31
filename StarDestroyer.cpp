@@ -15,6 +15,7 @@ char map[9][9] = {{'-','-','-','-','-','-','-','-','-'},
 						{'-','-','-','-','-','-','-','-','-'}};
 						
 int arr[7] = {2, 6, 7, 3, 4, 1, 5};
+int round = 0;
 
 void prin(){
 	
@@ -38,7 +39,6 @@ void ti(int t){
 	}
 }
 
-// TODO: show end game
 // TODO: clean file
 int main(){
 	
@@ -85,6 +85,7 @@ int main(){
 				}
 				
 				turn++;
+				cout << "Round: " << round << "\n";
 				
 			} else if (turn % 2 == 1){
 			
@@ -96,6 +97,7 @@ int main(){
 					system("CLS");
 					pos -= 1;
 					turn++;
+					round++;
 					
 				} else if (button == 'd'){
 					
@@ -105,6 +107,7 @@ int main(){
 					system("CLS");
 					pos += 1;
 					turn++;
+					round++;
 					
 				} else if (button == 'w'){
 					
@@ -131,6 +134,7 @@ int main(){
 					}
 				}
 				
+				cout << "Round: " << round << "\n";
 				prin();
 				
 				cin >> button;
@@ -140,6 +144,10 @@ int main(){
 				}
 			}
 		}
+		
+		system("CLS");
+		cout << "Game over!\nPress x to quit game\n";
+		cin >> button;
 	}
 	
 	return 0;
